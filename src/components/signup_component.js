@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import SignupImg from '../assets/signup.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default function SignUp() {
   const [fname, setFname] = useState("");
@@ -8,6 +10,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [userType, setUserType] = useState("");
   const [secretKey, setSecretKey] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     if (userType === "Admin" && secretKey !== "TodoAdmin") {
@@ -112,16 +115,29 @@ export default function SignUp() {
 
             <div className="mb-3">
               <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Enter password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="password-container" style={{ position: 'relative' }}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="form-control"
+                  placeholder="Enter password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <FontAwesomeIcon
+                  icon={showPassword ? faEyeSlash : faEye}
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    cursor: 'pointer'
+                  }}
+                />
+              </div>
             </div>
 
             <div className="d-grid">
-              <button type="submit" className="btn btn-primary" style={{fontWeight:'700', fontSize:'18px'}}>
+              <button type="submit" className="btn btn-primary" style={{ fontWeight: '700', fontSize: '18px' }}>
                 Sign Up
               </button>
             </div>

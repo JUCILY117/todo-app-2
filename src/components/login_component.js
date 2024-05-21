@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import WelcomeImg from '../assets/welcome.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -35,7 +38,6 @@ export default function Login() {
       });
   }
 
-
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
@@ -58,12 +60,25 @@ export default function Login() {
 
             <div className="mb-3">
               <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Enter password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="password-container" style={{ position: 'relative' }}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="form-control"
+                  placeholder="Enter password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <FontAwesomeIcon
+                  icon={showPassword ? faEyeSlash : faEye}
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    cursor: 'pointer'
+                  }}
+                />
+              </div>
             </div>
 
             <div className="mb-3">
