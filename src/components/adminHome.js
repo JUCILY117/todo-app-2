@@ -16,7 +16,7 @@ export default function AdminHome() {
   }, [isDarkMode]);
 
   const getAllUser = () => {
-    fetch(`http://localhost:5000/getAllUser?search=${searchQuery}`, {
+    fetch(`https://todo-server-91mv.onrender.com/getAllUser?search=${searchQuery}`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -33,7 +33,7 @@ export default function AdminHome() {
 
   const deleteUser = (id, name) => {
     if (window.confirm(`Are you sure you want to delete ${name}`)) {
-      fetch("http://localhost:5000/deleteUser", {
+      fetch("https://todo-server-91mv.onrender.com/deleteUser", {
         method: "POST",
         crossDomain: true,
         headers: {
