@@ -55,21 +55,23 @@ export default function SignUp() {
           <form onSubmit={handleSubmit}>
             <h2>Sign Up For Free!</h2>
             <div>
-              Register As
+              Register As&nbsp;
               <input
                 type="radio"
                 name="UserType"
                 value="User"
                 onChange={(e) => setUserType(e.target.value)}
+                checked={userType === "User"}
               />
-              User
+              &nbsp;User&nbsp;
               <input
                 type="radio"
                 name="UserType"
                 value="Admin"
                 onChange={(e) => setUserType(e.target.value)}
+                checked={userType === "Admin"}
               />
-              Admin
+              &nbsp;Admin
             </div>
             {userType === "Admin" ? (
               <div className="mb-3">
